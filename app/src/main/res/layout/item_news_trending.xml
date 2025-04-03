@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginStart="@dimen/dp_10"
+    android:layout_marginEnd="@dimen/dp_10"
+    android:layout_marginBottom="@dimen/dp_5"
+    android:id="@+id/itemNewsTrending"
+    android:orientation="vertical">
+
+    <!-- Hình ảnh -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageNews"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/RoundedImageView"
+        android:background="@drawable/rounded_image" />
+
+    <!-- Tiêu đề -->
+    <TextView
+        android:id="@+id/titleNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:fontFamily="@font/font_inter"
+        android:textColor="@color/black"
+        android:text="@string/title_news" />
+
+    <!-- Icon + Thời gian theo hàng dọc -->
+    <LinearLayout
+        android:id="@+id/newsInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingTop="4dp">
+
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:src="@drawable/icon_baseline_access_time_24"
+            android:contentDescription="@string/time_icon"
+            app:tint="@color/black"/>
+
+        <TextView
+            android:id="@+id/timeNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:fontFamily="@font/font_inter"
+            android:textStyle="normal"
+            android:textSize="16sp"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/red"
+            android:layout_weight="1"/> <!-- Đẩy ảnh sang cuối -->
+
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:src="@drawable/ic_share" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/black" />
+
+</LinearLayout>
