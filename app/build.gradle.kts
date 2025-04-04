@@ -61,7 +61,7 @@ dependencies {
 
     implementation ("me.relex:circleindicator:2.1.6")
     implementation ("com.tbuonomo:dotsindicator:4.3")
-
+    implementation(libs.fab)
     implementation(libs.imagepicker)
     implementation(libs.imageslideshow)
     implementation(libs.glide)
