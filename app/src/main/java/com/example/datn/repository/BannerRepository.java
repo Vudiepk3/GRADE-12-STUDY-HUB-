@@ -6,7 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.eduinvest.models.BannerModel;
+
+import com.example.datn.models.BannerModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

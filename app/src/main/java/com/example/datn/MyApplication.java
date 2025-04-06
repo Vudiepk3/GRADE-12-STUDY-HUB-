@@ -2,8 +2,9 @@ package com.example.datn;
 
 import android.app.Application;
 
-import com.example.eduinvest.repository.BannerRepository;
-import com.example.eduinvest.repository.NewsRepository;
+import com.example.datn.repository.BannerRepository;
+import com.example.datn.repository.NewsRepository;
+
 
 public class MyApplication extends Application {
     private static MyApplication instance;
@@ -12,8 +13,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
-        // Load banner ngay khi ứng dụng khởi chạy
         BannerRepository.getInstance().loadData();
         NewsRepository.getInstance();
     }

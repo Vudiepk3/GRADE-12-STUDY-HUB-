@@ -3,15 +3,10 @@ package com.example.datn.activity.onboarding;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.datn.MainActivity;
-import com.example.datn.R;
+import com.example.datn.activity.main.MainActivity;
 import com.example.datn.adapter.ViewOnboardingAdapter;
 import com.example.datn.databinding.ActivityOnboardingBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,19 +39,20 @@ public class OnboardingActivity extends AppCompatActivity {
             if (currentItem < adapter.getCount() - 1) {
                 binding.viewPager.setCurrentItem(currentItem + 1);
             } else {
-                FirebaseAuth auth = FirebaseAuth.getInstance(); // Lấy một instance của FirebaseAuth
-                FirebaseUser currentUser = auth.getCurrentUser(); // Lấy người dùng hiện tại đã đăng nhập
-
-                // Kiểm tra xem người dùng có đăng nhập không
-                if (currentUser != null) {
-                    // Nếu người dùng đã đăng nhập, bắt đầu MainActivity
-                    startActivity(new Intent(this, MainActivity.class));
-                } else {
-                    // Nếu người dùng chưa đăng nhập, bắt đầu GetStartedActivity
-//                    startActivity(new Intent(this, SignInActivity.class));
-                }
+//                FirebaseAuth auth = FirebaseAuth.getInstance(); // Lấy một instance của FirebaseAuth
+//                FirebaseUser currentUser = auth.getCurrentUser(); // Lấy người dùng hiện tại đã đăng nhập
+//
+//                // Kiểm tra xem người dùng có đăng nhập không
+//                if (currentUser != null) {
+//                    // Nếu người dùng đã đăng nhập, bắt đầu MainActivity
+//                    startActivity(new Intent(this, MainActivity.class));
+//                } else {
+//                    // Nếu người dùng chưa đăng nhập, bắt đầu GetStartedActivity
+////                    startActivity(new Intent(this, SignInActivity.class));
+//                }
 
                 // Kết thúc activity hiện tại
+                startActivity(new Intent(this, MainActivity.class));
                 finish();
             }
         });

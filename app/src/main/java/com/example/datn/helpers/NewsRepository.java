@@ -2,7 +2,7 @@ package com.example.datn.helpers;
 
 import androidx.annotation.NonNull;
 
-import com.devvu.grade12.models.NewsModel;
+import com.example.datn.models.NewsModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
