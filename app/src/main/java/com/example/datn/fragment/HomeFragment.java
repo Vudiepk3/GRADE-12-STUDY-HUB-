@@ -1,47 +1,40 @@
 package com.example.datn.fragment;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.datn.R;
-import com.example.datn.activity.main.ShowDocumentActivity;
+import com.example.datn.activity.main.ViewMoreActivity;
+import com.example.datn.adapter.SubjectAdapter;
+import com.example.datn.databinding.FragmentHomeBinding;
 import com.example.datn.helpers.CountdownTimer;
 import com.example.datn.helpers.FirebaseManager;
 import com.example.datn.helpers.ImageSlideManager;
 import com.example.datn.helpers.ProfileImageManager;
 import com.example.datn.helpers.QuoteManager;
+import com.example.datn.models.SubjectModel;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
+
+    private FragmentHomeBinding binding;
+
     private ImageSlideManager imageSlideManager;
     private ProfileImageManager profileImageManager;
     private QuoteManager quoteManager;
-    private TextView sloganTextView;
-    private final String[] subjectNames = {
-            "Toán Học", "Văn Học", "Tiếng Anh", "Vật Lý", "Hoá Học",
-            "Sinh Học", "Lịch Sử", "Địa Lý", "Giáo Dục Công Dân",
-            "Đánh Giá Tư Duy", "Đánh Giá Năng Lực"
-    };
-    private final int[] cardViewIds = {
-            R.id.mathsCard, R.id.literatureCard, R.id.englishCard, R.id.physicsCard,
-            R.id.chemistryCard, R.id.biologyCard, R.id.historyCard, R.id.geographyCard,
-            R.id.civicEducationCard, R.id.tsaCard, R.id.hsaCard
-    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Khởi tạo các Class thừa helpers
         FirebaseManager firebaseManager = new FirebaseManager();
         imageSlideManager = new ImageSlideManager(firebaseManager);
         profileImageManager = new ProfileImageManager(this);
@@ -50,53 +43,62 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        sloganTextView = view.findViewById(R.id.sologanTextView);
-        // ImageView để hiển thị ảnh đại diện
-        ImageView imageView = view.findViewById(R.id.iconImage);
+        // Setup recyclerView
+        binding.subjectRecycle.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        // Hiển thị slogan
+        // Data
+        List<SubjectModel> subjectList = new ArrayList<>();
+        subjectList.add(new SubjectModel(R.drawable.image_maths, getString(R.string.maths)));
+        subjectList.add(new SubjectModel(R.drawable.image_literature, getString(R.string.literature)));
+        subjectList.add(new SubjectModel(R.drawable.image_english, getString(R.string.english)));
+        subjectList.add(new SubjectModel(R.drawable.image_physics, getString(R.string.physics)));
+        subjectList.add(new SubjectModel(R.drawable.image_chemistry, getString(R.string.chemistry)));
+        subjectList.add(new SubjectModel(R.drawable.image_biology, getString(R.string.biology)));
+        subjectList.add(new SubjectModel(R.drawable.image_history, getString(R.string.history)));
+        subjectList.add(new SubjectModel(R.drawable.image_geography, getString(R.string.geography)));
+        subjectList.add(new SubjectModel(R.drawable.image_civiceducation, getString(R.string.civic)));
+        subjectList.add(new SubjectModel(R.drawable.image_tsa, getString(R.string.tsa)));
+        subjectList.add(new SubjectModel(R.drawable.image_hsa, getString(R.string.hsa)));
+
+        // Adapter
+        SubjectAdapter adapter = new SubjectAdapter(requireContext(), subjectList);
+        binding.subjectRecycle.setAdapter(adapter);
+
+        // Slogan
         updateQuote();
 
-        TextView countdownTextView = view.findViewById(R.id.countdownTextView);
-        new CountdownTimer(countdownTextView);
+        // Countdown
+        new CountdownTimer(binding.countdownTextView);
 
-        // Hiển thị ảnh đại diện
-        profileImageManager.loadProfileImage(imageView);
+        // Profile image
+        profileImageManager.loadProfileImage(binding.iconImage);
+        binding.iconImage.setOnClickListener(v -> profileImageManager.requestReadExternalStoragePermission());
 
-        // Gắn sự kiện click để thay đổi ảnh đại diện
-        imageView.setOnClickListener(v -> profileImageManager.requestReadExternalStoragePermission());
+        // Load Image Slide
+        imageSlideManager.loadImageSlide(binding.ImageSlide, requireActivity(), "BANNER1");
 
-        // Load slide ảnh
-        imageSlideManager.loadImageSlide(view.findViewById(R.id.ImageSlide), requireActivity(),"BANNER1");
+        binding.viewMore.setOnClickListener(v->{
+            startActivity(new Intent(requireActivity(), ViewMoreActivity.class));
+        });
 
-        // Load tài liệu các môn học
-        setupSubjectNavigation(view);
     }
-    // cập nhật sologan
+
     private void updateQuote() {
         String slogan = quoteManager.getQuoteForToday();
-        sloganTextView.setText(slogan);
-    }
-    // cài đặt tên môn học
-    private void setupSubjectNavigation(View view) {
-        for (int i = 0; i < cardViewIds.length; i++) {
-            LinearLayout cardView = view.findViewById(cardViewIds[i]);
-            final String subjectName = subjectNames[i];
-            cardView.setOnClickListener(v -> navigateToSubject(subjectName));
-        }
-    }
-    // chuyến đến activity môn học
-    private void navigateToSubject(String subjectName) {
-        Intent subjectActivity = new Intent(requireActivity(), ShowDocumentActivity.class);
-        subjectActivity.putExtra("subjectName", subjectName);
-        startActivity(subjectActivity);
+        binding.sologanTextView.setText(slogan);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

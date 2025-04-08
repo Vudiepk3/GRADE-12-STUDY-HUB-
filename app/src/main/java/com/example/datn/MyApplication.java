@@ -5,10 +5,8 @@ import android.app.Application;
 import com.example.datn.repository.BannerRepository;
 import com.example.datn.repository.NewsRepository;
 
-
 public class MyApplication extends Application {
     private static MyApplication instance;
-
     @Override
     public void onCreate() {
         super.onCreate();

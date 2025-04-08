@@ -32,9 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         requestNotificationPermission(); // Kiểm tra & yêu cầu quyền thông báo
-        checkUserAuthentication(); // Kiểm tra người dùng đã đăng nhập chưa
         setupViewPagerAndTabs(); // Thiết lập ViewPager2 & TabLayout
     }
 

@@ -115,6 +115,46 @@
             </LinearLayout>
         </LinearLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/row0">
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingStart="10dp"
+                android:text="Tài liệu"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/viewMore"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/viewMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tất cả"
+                android:paddingStart="10dp"
+                android:paddingEnd="15dp"
+                app:layout_constraintBottom_toBottomOf="@id/textView"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subjectRecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/textView"/>
+
         <!-- Row 1: CardView for ImageSlider -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/row5"
@@ -125,7 +165,7 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/row4"
+            app:layout_constraintTop_toBottomOf="@id/subjectRecycle"
             app:layout_constraintWidth_default="spread"
             app:layout_constraintHeight_default="wrap">
 
@@ -152,479 +192,6 @@
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/row0">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingStart="10dp"
-                android:text="Tài liệu"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,RtlSymmetry">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/row2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="-5dp"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            app:layout_constraintDimensionRatio="16:4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView">
-
-            <!-- Maths Card -->
-            <LinearLayout
-                android:id="@+id/mathsCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_maths" />
-                </androidx.cardview.widget.CardView>
-
-
-
-                <TextView
-                    android:id="@+id/mathsText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:text="@string/maths" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/literatureCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_literature" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/literatureText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/literature"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- English Card -->
-            <LinearLayout
-                android:id="@+id/englishCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_english" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/englishText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/english"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- Physics Card -->
-            <LinearLayout
-                android:id="@+id/physicsCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_physics" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/physicsName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/physics"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/row3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="-20dp"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            app:layout_constraintDimensionRatio="16:4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/row2">
-
-
-            <!-- Chemistry Card -->
-            <LinearLayout
-                android:id="@+id/chemistryCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_chemistry" />
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/chemistryText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/chemistry"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-
-            <!-- Biology Card -->
-            <LinearLayout
-                android:id="@+id/biologyCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_biology" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/biologyText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:text="@string/biology"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/historyCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_history" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/historyText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/history"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/geographyCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_geography" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/geographyText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/geography"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/row4"
-            android:weightSum="4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="-15dp"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            app:layout_constraintDimensionRatio="16:4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/row3">
-
-            <LinearLayout
-                android:id="@+id/civicEducationCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_civiceducation" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/civicEducationText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/civic"
-                    android:textColor="?attr/colorOnBackground"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/tsaCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_tsa" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/tsaText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="center"
-                    android:textColor="?attr/colorOnBackground"
-                    android:text="@string/tsa"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/hsaCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:elevation="20dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp">
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_margin="10dp"
-                        android:contentDescription="@string/todo"
-                        android:src="@drawable/image_hsa" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/hsaText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="?attr/colorOnBackground"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="@string/hsa"
-                    android:textSize="12sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
