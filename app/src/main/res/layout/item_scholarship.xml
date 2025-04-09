@@ -1,0 +1,91 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    app:cardCornerRadius="12dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="5dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/blue"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Hình ảnh ngôi nhà -->
+        <ImageView
+            android:id="@+id/imageScholarship"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/loading" />
+
+        <!-- Nội dung bên dưới hình ảnh -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Tiêu đề -->
+            <TextView
+                android:id="@+id/titlesSholarship"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:maxLines="2"
+                android:text="House Insurance"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#101010" />
+
+
+            <!-- Phần thưởng + nút bấm -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Văn bản "100 Suất Học Bổng" -->
+                <TextView
+                    android:id="@+id/cashbackText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:text="100 Suất Học Bổng"
+                    android:textSize="12sp"
+                    android:textColor="#3478F6"
+                    android:textStyle="bold"/>
+
+                <!-- Nút "Create Plan" -->
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRegister"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:maxLines="2"
+                    app:cornerRadius="16dp"
+                    android:backgroundTint="#3478F6"
+                    android:text="Đăng ký"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

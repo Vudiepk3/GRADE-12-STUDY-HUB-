@@ -147,7 +147,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/subjectRecycle"
             android:layout_width="match_parent"
@@ -192,6 +191,64 @@
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/row5">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="Học bổng doanh nghiệp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/font_alfa_slab_one"
+                tools:ignore="HardcodedText,RtlSymmetry">
+
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:scrollbars="vertical"
+                android:clipToPadding="false"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/textView1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="Dịch vụ đối tác"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/font_alfa_slab_one"
+                tools:ignore="HardcodedText,RtlSymmetry">
+
+            </TextView>
+
+            <include
+                android:id="@+id/layout_partner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                layout="@layout/layout_partner"/>
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

@@ -14,8 +14,10 @@ import java.util.List;
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
     private final List<SubjectModel> subjectList;
     private final Context context;
+    private final int itemWidght;
 
-    public SubjectAdapter(Context context, List<SubjectModel> subjectList) {
+    public SubjectAdapter(int itemWidght, Context context, List<SubjectModel> subjectList) {
+        this.itemWidght = itemWidght;
         this.context = context;
         this.subjectList = subjectList;
     }
@@ -33,6 +35,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         SubjectModel subject = subjectList.get(position);
         holder.binding.imgSubject.setImageResource(subject.getImageResId());
         holder.binding.nameSubject.setText(subject.getName());
+        // Set chiều cao cho item
+        ViewGroup.LayoutParams params = holder.binding.itemSubject.getLayoutParams();
+        if (params != null) {
+            params.width = itemWidght;
+            holder.binding.itemSubject.setLayoutParams(params);
+        }
 
         holder.binding.getRoot().setOnClickListener(v -> navigateToSubject(subject.getName()));
     }
@@ -50,6 +58,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
 
     static class SubjectViewHolder extends RecyclerView.ViewHolder {
         ItemSubjectBinding binding;
+
+
 
         public SubjectViewHolder(@NonNull ItemSubjectBinding binding) {
             super(binding.getRoot());
