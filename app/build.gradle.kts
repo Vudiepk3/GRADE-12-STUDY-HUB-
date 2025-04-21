@@ -55,6 +55,10 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.config)
 
+    // BOM để quản lý phiên bản Firebase
+    implementation(platform(libs.firebase.bom.v3340))
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -67,4 +71,7 @@ dependencies {
     implementation(libs.glide)
 
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
+
+    //Rate
+    implementation ("com.github.DinoLibrary:Rate:1.0")
 }

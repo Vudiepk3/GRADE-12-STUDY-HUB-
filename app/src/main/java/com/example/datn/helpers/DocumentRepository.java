@@ -44,9 +44,9 @@ public class DocumentRepository {
                     }
                 }
                 // Đảo ngược danh sách nếu cần
-                if (isReverseOrder) {
-                    Collections.reverse(documentList);
-                }
+//                if (isReverseOrder) {
+//                    Collections.reverse(documentList);
+//                }
                 callback.onSuccess(documentList);
             }
             @Override

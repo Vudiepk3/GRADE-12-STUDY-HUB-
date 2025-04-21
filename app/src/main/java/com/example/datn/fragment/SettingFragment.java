@@ -16,15 +16,18 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.datn.R;
+import com.example.datn.databinding.FragmentSettingBinding;
+import com.example.datn.utils.Common;
 
 
 public class SettingFragment extends Fragment {
     private static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=";
     private static final String TAG = "MoreFragment";
 
+    private FragmentSettingBinding binding;
 
     public SettingFragment() {
-        // Required empty public constructor
+
     }
 
     public static SettingFragment newInstance() {
@@ -34,22 +37,45 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_setting, container, false);
+        binding = FragmentSettingBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+
+        setupListeners();
+
+        return view;
     }
 
-    private void getActivities() {
-//        binding.btnScholarship.onClickListener(this::showFeatureComingSoonToast);
-//        binding.btnInternship.onClickListener(this::showFeatureComingSoonToast);
-//        binding.btnRate.onClickListener(this::openPlayStoreForRating);
-//        binding.btnShare.onClickListener(this::shareAppLink);
-//        binding.btnContact.onClickListener(this::sendEmailIntent);
-//        binding.btnDonate.onClickListener(this::showFeatureComingSoonToast);
-////        binding.UserRelative.setOnClickListener(v -> openUserProfile());
-//        CardView rewardCard = binding.rewardCard;
-//        rewardCard.setOnClickListener(v -> showFeatureComingSoonToast());
+    private void setupListeners() {
+        //Câu hỏi thường gặp
+//        binding.btnAsk.setOnClickListener(v -> goToAFQ());
+        // Huong dan su dung
+        binding.btnInstructions.setOnClickListener(v -> showFeatureComingSoonToast());
+        //Điều khoản sử dụng
+        binding.btnTerms.setOnClickListener(v -> showFeatureComingSoonToast());
+        //Đánh giá app
+        binding.btnFeedback.setOnClickListener(v -> sendEmailFeedBack());
+        //Mời bạn bè
+        binding.btnInvite.setOnClickListener(v -> shareAppLink());
+        //Đánh giá app
+        binding.btnEvaluate.setOnClickListener(v -> Common.showRate(requireActivity()));
+        //Theo dôỗi app trên tiktok
+        binding.btnTiktok.setOnClickListener(v -> showFeatureComingSoonToast());
+        //Theo dõi app trên facebook
+        binding.btnFacebook.setOnClickListener(v -> showFeatureComingSoonToast());
+        //Thay đổi ngôn ngữ
+        binding.btnLanguage.setOnClickListener(v -> showFeatureComingSoonToast());
+        //Âm thanh thông báo
+        binding.btnSound.setOnClickListener(v -> showFeatureComingSoonToast());
+        //Quản lý thông báo
+        binding.btnNotification.setOnClickListener(v -> showFeatureComingSoonToast());
+
     }
 
-    // Phương thức mở Play Store để đánh giá app
+//    private void goToAFQ(){
+//        Intent intent = new Intent(getActivity(), FAQActivity.class);
+//        startActivity(intent);
+//    }
+
     private void openPlayStoreForRating() {
         if (!isAdded()) return;
         try {
@@ -65,7 +91,6 @@ public class SettingFragment extends Fragment {
         }
     }
 
-    // Phương thức chia sẻ link app
     private void shareAppLink() {
         if (!isAdded()) return;
         try {
@@ -80,34 +105,27 @@ public class SettingFragment extends Fragment {
         }
     }
 
-    // Phương thức gửi email
-    private void sendEmailIntent() {
+    private void sendEmailFeedBack() {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("message/rfc822");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"vulq2k3@gmail.com"});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Liên Hệ Hợp Tác");
         try {
-            startActivity(Intent.createChooser(emailIntent, "Send email via"));
+            startActivity(Intent.createChooser(emailIntent, ""));
         } catch (ActivityNotFoundException ex) {
-            Toast.makeText(getActivity(), "No email app found.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Không tìm thấy ứng dụng để gửi email.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    // Phương thức mở trang User Profile
-//    private void openUserProfile() {
-//        if (!isAdded()) return;
-//        try {
-//            Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-//            startActivity(intent);
-//        } catch (Exception e) {
-//            Log.e(TAG, "Error opening UserProfileActivity: " + e.getMessage(), e);
-//        }
-//    }
-
-    // Hiển thị thông báo "Tính năng sắp ra mắt"
     private void showFeatureComingSoonToast() {
         if (!isAdded()) return;
         Toast.makeText(requireContext(), "Chức năng sẽ được cập nhật sớm nhất đến với bạn", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }
+

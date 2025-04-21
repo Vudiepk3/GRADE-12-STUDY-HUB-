@@ -205,7 +205,7 @@
                 android:text="Học bổng doanh nghiệp"
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/font_alfa_slab_one"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText,RtlSymmetry">
 
             </TextView>
@@ -236,7 +236,7 @@
                 android:text="Dịch vụ đối tác"
                 android:textSize="16sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/font_alfa_slab_one"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText,RtlSymmetry">
 
             </TextView>

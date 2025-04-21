@@ -20,6 +20,15 @@
         android:theme="@style/Theme.DATN"
         tools:targetApi="31">
         <activity
+            android:name=".activity.signinup.ForgetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.signinup.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.signinup.SignInActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.main.ViewMoreActivity"
             android:exported="false" />
         <activity

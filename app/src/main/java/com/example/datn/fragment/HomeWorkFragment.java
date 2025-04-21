@@ -101,9 +101,6 @@ public class HomeWorkFragment extends Fragment {
         });
     }
 
-    /**
-     * Cài đặt SearchView để hỗ trợ tìm kiếm danh sách tài liệu.
-     */
     private void setupSearchView(View view) {
         SearchView searchView = view.findViewById(R.id.search);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

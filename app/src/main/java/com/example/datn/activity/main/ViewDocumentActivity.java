@@ -82,23 +82,20 @@ public class ViewDocumentActivity extends AppCompatActivity {
         txtTitle.setText("Đang mở tài liệu: "+ filename);
         dialog.show();
 
+        pdfview.getSettings().setJavaScriptEnabled(true);
         pdfview.setWebViewClient(new WebViewClient() {
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-            }
-            @Override
             public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                dialog.dismiss();
-            }
-        });
-
-        pdfview.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-                Log.e("WebView", consoleMessage.message());
-                return true;
+                view.evaluateJavascript(
+                        "(function() { return document.body.innerText.length; })();",
+                        value -> {
+                            if (Integer.parseInt(value) > 0) {
+                                dialog.dismiss();
+                            } else {
+                                // Thử lại hoặc thông báo lỗi
+                                Log.e("PDFLoad", "PDF chưa sẵn sàng");
+                            }
+                        });
             }
         });
 
