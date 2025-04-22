@@ -1,6 +1,10 @@
 package com.example.datn.activity.signinup;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,18 +13,73 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.datn.R;
+import com.example.datn.activity.BaseActivity;
+import com.example.datn.constants.Base;
+import com.example.datn.databinding.ActivityForgetPasswordBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgetPasswordActivity extends AppCompatActivity {
+public class ForgetPasswordActivity extends BaseActivity {
+    private FirebaseAuth auth;
+    private ActivityForgetPasswordBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_forget_password);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        binding = ActivityForgetPasswordBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        auth = FirebaseAuth.getInstance();
+
+        binding.btnForgotPasswordSubmit.setOnClickListener(v -> resetPassword());
+        binding.tvSubmitMsg.setOnClickListener(v -> openGmail());
+    }
+
+    // Kiểm tra tính hợp lệ của email
+    private boolean validateForm(String email) {
+        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.tilEmailForgetPassword.setError("Nhập địa chỉ email hợp lệ");
+            return false;
+        }
+        return true;
+    }
+
+    // Đặt lại mật khẩu
+    private void resetPassword() {
+        String email = binding.tilEmailForgetPassword.getText().toString();
+        if (validateForm(email)) {
+            Base.showProgressBar(this);
+            auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
+                Base.hideProgressBar(this);
+                if (task.isSuccessful()) {
+                    binding.tilEmailForgetPassword.setVisibility(View.GONE);
+                    binding.tvSubmitMsg.setVisibility(View.VISIBLE);
+                    binding.btnForgotPasswordSubmit.setVisibility(View.GONE);
+                } else {
+                    Base.showToast(this, "Không thể đặt lại mật khẩu. Thử lại sau.");
+                }
+            });
+        }
+    }
+
+    // Mở ứng dụng Gmail
+    private void openGmail() {
+        String email = binding.tilEmailForgetPassword.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        intent.setPackage("com.google.android.gm");
+
+        try {
+            startActivity(intent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Base.showToast(this, "Không tìm thấy ứng dụng Gmail");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Base.hideProgressBar(this);
+        binding = null;
     }
 }
