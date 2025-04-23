@@ -32,14 +32,6 @@ public class UserModel {
         this.name = name;
         this.password = password;
     }
-    public UserModel(String id, String emailId, String name, String image, String password, List<LoanRequestModel> loanRequestList) {
-        this.id = id;
-        this.emailId = emailId;
-        this.name = name;
-        this.image = image;
-        this.password = password;
-    }
-
     public UserModel(String id, String emailId, String name, String image, String password, String socialLink, String cvLink) {
         this.id = id;
         this.emailId = emailId;

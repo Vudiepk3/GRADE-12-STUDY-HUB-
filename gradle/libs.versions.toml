@@ -25,7 +25,9 @@ imageslideshow = "0.1.0"
 glide = "4.16.0"
 fab = "1.6.4"
 firebaseBomVersion = "33.10.0"
+comGoogleAndroidGmsPlayServicesAuth = "21.3.0"
 [libraries]
+play-services-auth-v2040 = { module = "com.google.android.gms:play-services-auth", version.ref = "comGoogleAndroidGmsPlayServicesAuth" }
 firebase-bom-v3340 = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
 fab = { module = "com.github.clans:fab", version.ref = "fab" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }

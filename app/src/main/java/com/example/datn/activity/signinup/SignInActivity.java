@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.datn.R;
 import com.example.datn.activity.main.MainActivity;
 import com.example.datn.databinding.ActivitySignInBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,7 +42,7 @@ public class SignInActivity extends AppCompatActivity {
 
         // Cấu hình Google SignIn
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(com.example.eduinvest.R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);

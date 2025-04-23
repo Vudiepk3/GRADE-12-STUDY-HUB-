@@ -57,7 +57,9 @@ dependencies {
 
     // BOM để quản lý phiên bản Firebase
     implementation(platform(libs.firebase.bom.v3340))
-
+// Firebase Authentication
+    implementation(libs.firebase.auth)
+    implementation (libs.play.services.auth.v2040) // Google Identity Services
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

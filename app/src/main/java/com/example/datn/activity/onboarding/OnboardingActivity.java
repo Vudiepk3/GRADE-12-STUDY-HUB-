@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.datn.activity.main.MainActivity;
+import com.example.datn.activity.signinup.SignInActivity;
 import com.example.datn.adapter.ViewOnboardingAdapter;
 import com.example.datn.databinding.ActivityOnboardingBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +23,6 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityOnboardingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setupViewPager();
         setupClick();
     }
@@ -39,7 +39,19 @@ public class OnboardingActivity extends AppCompatActivity {
             if (currentItem < adapter.getCount() - 1) {
                 binding.viewPager.setCurrentItem(currentItem + 1);
             } else {
-                startActivity(new Intent(this, MainActivity.class));
+                FirebaseAuth auth = FirebaseAuth.getInstance(); // Lấy một instance của FirebaseAuth
+                FirebaseUser currentUser = auth.getCurrentUser(); // Lấy người dùng hiện tại đã đăng nhập
+
+                // Kiểm tra xem người dùng có đăng nhập không
+                if (currentUser != null) {
+                    // Nếu người dùng đã đăng nhập, bắt đầu MainActivity
+                    startActivity(new Intent(this, MainActivity.class));
+                } else {
+                    // Nếu người dùng chưa đăng nhập, bắt đầu GetStartedActivity
+                    startActivity(new Intent(this, SignInActivity.class));
+                }
+
+                // Kết thúc activity hiện tại
                 finish();
             }
         });
