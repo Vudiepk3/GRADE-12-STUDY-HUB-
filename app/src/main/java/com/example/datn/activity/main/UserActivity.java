@@ -1,53 +1,34 @@
-package com.example.datn.fragment;
+package com.example.datn.activity.main;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.datn.R;
 import com.example.datn.activity.onboarding.OnboardingActivity;
 import com.example.datn.adapter.EditProfileAdapter;
-import com.example.datn.databinding.FragmentUserBinding;
+import com.example.datn.databinding.ActivityUserBinding;
 import com.example.datn.firebase.FireBaseClass;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 
-public class UserFragment extends Fragment {
-
-    private FragmentUserBinding binding;
+public class UserActivity extends AppCompatActivity {
+    private ActivityUserBinding binding;
     private FirebaseAuth auth;
-
-    public UserFragment() {
-
-    }
-
-    public static UserFragment newInstance() {
-        return new UserFragment();
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = FragmentUserBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityUserBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         auth = FirebaseAuth.getInstance();
         loadUserInfo();
         setUpClick();
     }
-
     private void loadUserInfo() {
         FirebaseUser currentUser = auth.getCurrentUser();
 
@@ -95,7 +76,6 @@ public class UserFragment extends Fragment {
             }
         }
     }
-
     private void setUpClick() {
         binding.cardImage.setOnClickListener(v -> {
             FirebaseUser currentUser = auth.getCurrentUser();
@@ -112,11 +92,11 @@ public class UserFragment extends Fragment {
 
             if (isGoogleUser) {
                 // Nếu là người dùng Gmail → không cho sửa hồ sơ
-                Toast.makeText(requireContext(), "Tài khoản Google không thể chỉnh sửa thông tin", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Tài khoản Google không thể chỉnh sửa thông tin", Toast.LENGTH_SHORT).show();
             } else {
                 // Nếu là người dùng thường → cho phép chỉnh sửa
-                EditProfileAdapter bottomSheetFragment = new EditProfileAdapter(requireContext());
-                bottomSheetFragment.show(requireActivity().getSupportFragmentManager(), bottomSheetFragment.getTag());
+                EditProfileAdapter bottomSheetFragment = new EditProfileAdapter(this);
+                bottomSheetFragment.show(this.getSupportFragmentManager(), bottomSheetFragment.getTag());
             }
         });
 
@@ -124,10 +104,10 @@ public class UserFragment extends Fragment {
             FirebaseUser currentUser = auth.getCurrentUser();
             if (currentUser != null) {
                 auth.signOut();
-                Intent intent = new Intent(requireActivity(), OnboardingActivity.class);
+                Intent intent = new Intent(this, OnboardingActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                requireActivity().finish();
+                finish();
             }
         });
     }
@@ -139,9 +119,4 @@ public class UserFragment extends Fragment {
         loadUserInfo();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 }

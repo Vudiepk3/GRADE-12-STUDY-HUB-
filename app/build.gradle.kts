@@ -76,4 +76,5 @@ dependencies {
 
     //Rate
     implementation ("com.github.DinoLibrary:Rate:1.0")
+    implementation ("androidx.work:work-runtime:2.7.1")
 }

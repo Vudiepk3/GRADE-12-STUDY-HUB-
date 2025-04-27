@@ -4,18 +4,20 @@ package com.example.datn.fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
-import androidx.cardview.widget.CardView;
+import java.io.File;
+
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.datn.R;
 import com.example.datn.databinding.FragmentSettingBinding;
 import com.example.datn.utils.Common;
 
@@ -68,6 +70,8 @@ public class SettingFragment extends Fragment {
         binding.btnSound.setOnClickListener(v -> showFeatureComingSoonToast());
         //Quản lý thông báo
         binding.btnNotification.setOnClickListener(v -> showFeatureComingSoonToast());
+        //Tải tài liệu
+        binding.btnDownload.setOnClickListener(v -> gotoFolderDownload());
 
     }
 
@@ -121,6 +125,28 @@ public class SettingFragment extends Fragment {
         if (!isAdded()) return;
         Toast.makeText(requireContext(), "Chức năng sẽ được cập nhật sớm nhất đến với bạn", Toast.LENGTH_SHORT).show();
     }
+
+    private void gotoFolderDownload() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            // Android 10 trở lên, sử dụng Storage Access Framework (SAF)
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+            startActivityForResult(intent, 1);  // 1 là requestCode bạn có thể tùy chỉnh
+        } else {
+            // Android trước Android 10, mở thư mục trực tiếp
+            File directory = new File(Environment.getExternalStorageDirectory(), "Download");
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Uri uri = Uri.fromFile(directory);
+            intent.setDataAndType(uri, "resource/folder");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(requireActivity(), "Không tìm thấy ứng dụng quản lý file", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     @Override
     public void onDestroyView() {

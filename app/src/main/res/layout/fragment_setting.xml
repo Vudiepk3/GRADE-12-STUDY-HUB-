@@ -222,6 +222,20 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="@dimen/dp_10">
 
+                    <com.example.datn.view.ButtonTextView
+                        android:id="@+id/btnDownload"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:padding="5dp"
+                        android:text="Quản lý tài liệu tải xuống"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:button_drawablePadding="8dp"
+                        app:drawableEndCompat="@drawable/icon_right"
+                        app:drawableStartCompat="@drawable/ic_vector" />
 
                     <com.example.datn.view.ButtonTextView
                         android:id="@+id/btnLanguage"

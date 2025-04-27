@@ -10,24 +10,24 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:scaleType="fitXY"
-        android:src="@drawable/ing_onboarding1"/>
+        android:src="@drawable/img_1"/>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Manage Your"
-        android:textSize="@dimen/sp_24"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_marginHorizontal="@dimen/dp_16"/>
+<!--    <TextView-->
+<!--        android:id="@+id/textView1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Manage Your"-->
+<!--        android:textSize="@dimen/sp_24"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:layout_marginTop="@dimen/dp_20"-->
+<!--        android:layout_marginHorizontal="@dimen/dp_16"/>-->
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Payments with"
+        android:text="Học hôm nay,"
         android:textSize="@dimen/sp_24"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
@@ -37,21 +37,21 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mobile banking"
+        android:text="thành công mai."
         android:textSize="@dimen/sp_24"
         android:textStyle="bold"
         android:textColor="#1E90FF"
         android:layout_marginHorizontal="@dimen/dp_16"/>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A convenient way to manage your money securely from mobile device."
-        android:textSize="@dimen/sp_16"
-        android:textColor="#B0B0B0"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp_16"
-        android:layout_marginHorizontal="@dimen/dp_16"/>
+<!--    <TextView-->
+<!--        android:id="@+id/textView4"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="A convenient way to manage your money securely from mobile device."-->
+<!--        android:textSize="@dimen/sp_16"-->
+<!--        android:textColor="#B0B0B0"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="@dimen/dp_16"-->
+<!--        android:layout_marginHorizontal="@dimen/dp_16"/>-->
 
 </LinearLayout>

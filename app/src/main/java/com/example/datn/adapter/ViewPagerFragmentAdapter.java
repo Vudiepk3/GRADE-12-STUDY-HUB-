@@ -24,9 +24,9 @@
                 return new HomeFragment(); // Fragment cho home
             } else if (position == 1) {
                 return new NewsFragment();// Fragment cho tab Study
+//            } else if (position == 2) {
+//                return new UserFragment(); // Fragment cho tab User
             } else if (position == 2) {
-                return new UserFragment(); // Fragment cho tab User
-            } else if (position == 3) {
                 return new SettingFragment(); // Fragment setting
             }else {
                 return new HomeFragment(); // Fragment mặc định
@@ -35,6 +35,6 @@
 
         @Override
         public int getItemCount() {
-            return 4; // Số lượng tab
+            return 3; // Số lượng tab
         }
     }

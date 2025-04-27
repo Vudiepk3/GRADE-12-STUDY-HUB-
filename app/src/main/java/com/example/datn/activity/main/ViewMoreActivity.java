@@ -62,4 +62,9 @@ public class ViewMoreActivity extends AppCompatActivity {
     private void setUpClick(){
         binding.imgBack.setOnClickListener(v -> finish());
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

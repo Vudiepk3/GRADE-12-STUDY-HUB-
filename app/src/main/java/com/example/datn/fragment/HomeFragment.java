@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.datn.R;
+import com.example.datn.activity.main.UserActivity;
 import com.example.datn.activity.main.ViewMoreActivity;
 import com.example.datn.adapter.ScholarshipAdapter;
 import com.example.datn.adapter.SubjectAdapter;
@@ -97,7 +98,7 @@ public class HomeFragment extends Fragment {
 
         // Profile image
         profileImageManager.loadProfileImage(binding.iconImage);
-        binding.iconImage.setOnClickListener(v -> profileImageManager.requestReadExternalStoragePermission());
+//        binding.iconImage.setOnClickListener(v -> profileImageManager.requestReadExternalStoragePermission());
 
         // Load Image Slide
         imageSlideManager.loadImageSlide(binding.ImageSlide, requireActivity(), "BANNER1");
@@ -105,7 +106,9 @@ public class HomeFragment extends Fragment {
         binding.viewMore.setOnClickListener(v->{
             startActivity(new Intent(requireActivity(), ViewMoreActivity.class));
         });
-
+        binding.iconImage.setOnClickListener(v->{
+            startActivity(new Intent(requireActivity(), UserActivity.class));
+        });
     }
     private void loadData() {
         binding.recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));

@@ -5,14 +5,10 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.datn.R;
 import com.example.datn.activity.onboarding.OnboardingActivity;
@@ -87,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     tab.setIcon(R.drawable.ic_news);
                     break;
+//                case 2:
+//                    tab.setIcon(R.drawable.ic_person);
+//                    break;
                 case 2:
-                    tab.setIcon(R.drawable.ic_person);
-                    break;
-                case 3:
                     tab.setIcon(R.drawable.ic_more);
                     break;
             }
