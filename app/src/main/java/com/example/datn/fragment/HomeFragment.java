@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.datn.R;
+import com.example.datn.activity.main.FullQuizTestActivity;
 import com.example.datn.activity.main.UserActivity;
 import com.example.datn.activity.main.ViewMoreActivity;
 import com.example.datn.adapter.ScholarshipAdapter;
@@ -65,6 +66,38 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        setUpRecycleview();
+        // Slogan
+        updateQuote();
+        getDataFromFirebase();
+
+        // Countdown
+        new CountdownTimer(binding.countdownTextView);
+
+        // Profile image
+        profileImageManager.loadProfileImage(binding.iconImage);
+//        binding.iconImage.setOnClickListener(v -> profileImageManager.requestReadExternalStoragePermission());
+
+        // Load Image Slide
+        imageSlideManager.loadImageSlide(binding.ImageSlide, requireActivity(), "BANNER1");
+        setUpClick();
+
+    }
+
+    private void setUpClick() {
+        binding.viewMore.setOnClickListener(v -> {
+            startActivity(new Intent(requireActivity(), ViewMoreActivity.class));
+        });
+        binding.iconImage.setOnClickListener(v -> {
+            startActivity(new Intent(requireActivity(), UserActivity.class));
+        });
+        binding.layoutFunction.lnTest.setOnClickListener(v -> {
+            startActivity(new Intent(requireActivity(), FullQuizTestActivity.class));
+        });
+    }
+
+    private void setUpRecycleview() {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         int screenWidth = displayMetrics.widthPixels;
         int itemWidth = screenWidth / 5;
@@ -86,31 +119,11 @@ public class HomeFragment extends Fragment {
         subjectList.add(new SubjectModel(R.drawable.image_hsa, getString(R.string.hsa)));
 
         // Adapter
-        SubjectAdapter adapter = new SubjectAdapter(itemWidth,requireContext(), subjectList);
+        SubjectAdapter adapter = new SubjectAdapter(itemWidth, requireContext(), subjectList);
         binding.subjectRecycle.setAdapter(adapter);
-
-        // Slogan
-        updateQuote();
-        loadData();
-
-        // Countdown
-        new CountdownTimer(binding.countdownTextView);
-
-        // Profile image
-        profileImageManager.loadProfileImage(binding.iconImage);
-//        binding.iconImage.setOnClickListener(v -> profileImageManager.requestReadExternalStoragePermission());
-
-        // Load Image Slide
-        imageSlideManager.loadImageSlide(binding.ImageSlide, requireActivity(), "BANNER1");
-
-        binding.viewMore.setOnClickListener(v->{
-            startActivity(new Intent(requireActivity(), ViewMoreActivity.class));
-        });
-        binding.iconImage.setOnClickListener(v->{
-            startActivity(new Intent(requireActivity(), UserActivity.class));
-        });
     }
-    private void loadData() {
+
+    private void getDataFromFirebase() {
         binding.recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         dataList = new ArrayList<>();
         adapter = new ScholarshipAdapter(dataList, requireContext());
