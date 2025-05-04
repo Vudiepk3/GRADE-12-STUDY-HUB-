@@ -32,35 +32,35 @@ public class FullQuizTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityFullQuizTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getDataFromFirebase();
     }
-    private void getDataFromFirebase(){
+    private void getDataFromFirebase() {
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 
-            binding.recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        quizModelList = new ArrayList<>();
+        quizListAdapter = new QuizListAdapter(quizModelList);
+        binding.recyclerView.setAdapter(quizListAdapter);
 
-            quizModelList = new ArrayList<>();
-            quizListAdapter = new QuizListAdapter(quizModelList);
-            binding.recyclerView.setAdapter(quizListAdapter);
-
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Test");
-            Query query = databaseReference.orderByChild("timestamp");
-
-            ValueEventListener eventListener = query.addValueEventListener(new ValueEventListener() {
-                @SuppressLint("NotifyDataSetChanged")
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                   quizModelList.clear();
-                    for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
-                        QuizModel quizModel = snapshot.getValue(QuizModel.class);
-                            quizModelList.add(quizModel);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Test");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                quizModelList.clear();
+                for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
+                    QuizModel quizModel = itemSnapshot.getValue(QuizModel.class);
+                    if (quizModel != null) {
+                        quizModelList.add(quizModel);
                     }
-                    Collections.reverse(quizModelList);
-                    quizListAdapter.notifyDataSetChanged();
                 }
+                Collections.reverse(quizModelList);
+                quizListAdapter.notifyDataSetChanged();
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Log or handle the error
+            }
+        });
     }
 }

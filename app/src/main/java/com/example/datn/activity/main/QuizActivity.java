@@ -94,7 +94,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         // Display the question and options
-        binding.questionIndicatorTextview.setText("Question " + (currentQuestionIndex + 1) + "/ " + questionModelList.size());
+        binding.questionIndicatorTextview.setText("Câu hỏi " + (currentQuestionIndex + 1) + "/ " + questionModelList.size());
         binding.questionProgressIndicator.setProgress((int) ((currentQuestionIndex / (float) questionModelList.size()) * 100));
         binding.questionTextview.setText(questionModelList.get(currentQuestionIndex).getQuestion());
         List<String> options = questionModelList.get(currentQuestionIndex).getOptions();
@@ -106,7 +106,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        // Set the background color of all buttons to gray
         binding.btn0.setBackgroundColor(getColor(R.color.gray));
         binding.btn1.setBackgroundColor(getColor(R.color.gray));
         binding.btn2.setBackgroundColor(getColor(R.color.gray));
@@ -114,10 +113,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         try {
             if (view.getId() == R.id.next_btn) {
-                // If the "Next" button is clicked
                 if (selectedAnswer.isEmpty()) {
                     // Check if the user has selected an answer
-                    Toast.makeText(getApplicationContext(), "Please select an answer to continue", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Hãy chọn 1 đáp án để tiếp tục", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (selectedAnswer.equals(questionModelList.get(currentQuestionIndex).getCorrect())) {
@@ -135,7 +133,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 view.setBackgroundColor(getColor(R.color.orange)); // Set the background color of the selected button
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Application error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Lỗi ứng dụng", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -150,9 +148,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             ItemScoreDialogBinding dialogBinding = ItemScoreDialogBinding.inflate(getLayoutInflater());
             dialogBinding.scoreProgressIndicator.setProgress(percentage);
             dialogBinding.scoreProgressText.setText(percentage + " %");
-            dialogBinding.scoreTitle.setText("Congratulations, you have completed the quiz");
+            dialogBinding.scoreTitle.setText("Chúc mừng, bạn đã hoàn thiện bài Test");
             dialogBinding.scoreTitle.setTextColor(Color.RED);
-            dialogBinding.scoreSubtitle.setText(score + " out of " + totalQuestions + " correct");
+            dialogBinding.scoreSubtitle.setText(score + " / " + totalQuestions + " chính xác");
             dialogBinding.finishBtn.setOnClickListener(v -> finish()); // Close the activity when the "Finish" button is clicked
 
             new AlertDialog.Builder(this)
@@ -160,21 +158,21 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     .setCancelable(false)
                     .show();
         } catch (Exception e) {
-            Toast.makeText(this, "Application error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Lỗi ứng dụng", Toast.LENGTH_SHORT).show();
         }
     }
 
     // This method displays a confirmation dialog when the user wants to exit the quiz
     private void showExitConfirmationDialog() {
         new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit the quiz?")
-                .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+                .setMessage("Bạn  muốn kết thúc bài test?")
+                .setPositiveButton("Kết thúc", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finishQuiz(); // End the activity if the user chooses to exit
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton("Hủy", null)
                 .show();
     }
 

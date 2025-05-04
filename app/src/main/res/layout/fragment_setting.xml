@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="60dp"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -49,8 +48,8 @@
                 android:id="@+id/supportCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
                 android:layout_marginTop="5dp"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp">
 
@@ -208,8 +207,9 @@
                 android:id="@+id/rewardCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="60dp"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp">
 
