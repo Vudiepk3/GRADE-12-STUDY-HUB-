@@ -24,6 +24,7 @@ imagepicker = "2.1"
 imageslideshow = "0.1.0"
 glide = "4.16.0"
 fab = "1.6.4"
+kotlin = "2.1.10"
 firebaseBomVersion = "33.10.0"
 comGoogleAndroidGmsPlayServicesAuth = "21.3.0"
 [libraries]
@@ -56,4 +57,4 @@ firebase-config = { group = "com.google.firebase", name = "firebase-config", ver
 android-application = { id = "com.android.application", version.ref = "agp" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 google-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "googleFirebaseCrashlytics" }
-
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

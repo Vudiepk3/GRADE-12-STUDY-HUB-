@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/light_gray">
+    android:background="@color/light_gray"
+    android:orientation="vertical">
 
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@color/white"
-        android:paddingHorizontal="@dimen/dp_12"
         android:layout_gravity="center"
-        android:clipToOutline="true">
+        android:background="@color/white"
+        android:clipToOutline="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/dp_12">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_5"
-            android:text="Tin tức"
-            android:textSize="@dimen/sp_26"
-            android:textColor="@color/blue"
-            android:textStyle="bold"
             android:fontFamily="@font/font_alfa_slab_one"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="Tin tức"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/sp_26"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- RecyclerView -->
@@ -35,8 +34,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
-        android:scrollbars="vertical"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

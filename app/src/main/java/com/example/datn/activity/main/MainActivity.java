@@ -14,6 +14,8 @@ import com.example.datn.R;
 import com.example.datn.activity.onboarding.OnboardingActivity;
 import com.example.datn.adapter.ViewPagerFragmentAdapter;
 import com.example.datn.databinding.ActivityMainBinding;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,20 +30,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        requestNotificationPermission(); // Kiểm tra & yêu cầu quyền thông báo
-        setupViewPagerAndTabs(); // Thiết lập ViewPager2 & TabLayout
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+        requestNotificationPermission();
+        setupViewPagerAndTabs();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adView.loadAd(adRequest);
+    }
+
+    @Override
+    protected void onPause() {
+        binding.adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.adView.resume();
+    }
+
 
     // 🔹 Yêu cầu quyền gửi thông báo cho Android 13 trở lên
     private void requestNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(
-                        this,
-                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
-                        NOTIFICATION_PERMISSION_CODE
-                );
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_PERMISSION_CODE);
             }
         }
     }
@@ -63,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkUserAuthentication() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
-            startActivity(new Intent(this, OnboardingActivity.class)
-                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            startActivity(new Intent(this, OnboardingActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             finish();
         }
     }
@@ -96,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        binding = null; // Tránh memory leak
+        binding.adView.destroy();
+        binding = null;
     }
 }

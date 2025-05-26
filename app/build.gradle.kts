@@ -55,26 +55,26 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.config)
 
-    // BOM để quản lý phiên bản Firebase
     implementation(platform(libs.firebase.bom.v3340))
-// Firebase Authentication
     implementation(libs.firebase.auth)
-    implementation (libs.play.services.auth.v2040) // Google Identity Services
+    implementation(libs.play.services.auth.v2040)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation ("me.relex:circleindicator:2.1.6")
-    implementation ("com.tbuonomo:dotsindicator:4.3")
+    implementation("me.relex:circleindicator:2.1.6")
+    implementation("com.tbuonomo:dotsindicator:4.3")
     implementation(libs.fab)
     implementation(libs.imagepicker)
     implementation(libs.imageslideshow)
     implementation(libs.glide)
 
-    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     //Rate
-    implementation ("com.github.DinoLibrary:Rate:1.0")
-    implementation ("androidx.work:work-runtime:2.7.1")
+    implementation("com.github.DinoLibrary:Rate:1.0")
+    implementation("androidx.work:work-runtime:2.7.1")
+
+    implementation("com.google.android.gms:play-services-ads:24.3.0")
 }
